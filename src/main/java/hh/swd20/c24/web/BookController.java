@@ -16,4 +16,10 @@ public class BookController {
 	public String getIndex(Model model) {
 		return "bookpage";
 	}
+
+	@GetMapping(value = "/booklist")
+	public String bookList(Model model) {
+		model.addAttribute("books", repository.findAll());
+		return "booklist";
+	}
 }
