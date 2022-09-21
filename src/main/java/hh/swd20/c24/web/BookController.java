@@ -15,11 +15,6 @@ public class BookController {
 	@Autowired
 	BookRepo repository;
 
-	@GetMapping(value = "/index")
-	public String getIndex(Model model) {
-		return "bookpage";
-	}
-
 	@GetMapping(value = "/booklist")
 	public String bookList(Model model) {
 		model.addAttribute("books", repository.findAll());
@@ -50,16 +45,9 @@ public class BookController {
 		return "editbook";
 	}
 
-	@PostMapping(value = "/edit/{id}")
+	/*@PostMapping(value = "/edit/{id}")
 	public String editBook(Book book) {
 		repository.save(book);
-		return "booklist";
-	}
-
-	/*
-	 * @GetMapping(value = "/edit/{id}") public String
-	 * getEditPage(@PathVariable("id") Long bookId, Model model) {
-	 * model.addAttribute("book", repository.findById(bookId)); return "editbook"; }
-	 */
-
+		return "redirect:/booklist";
+	}*/
 }
