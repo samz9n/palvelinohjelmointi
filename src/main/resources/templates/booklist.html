@@ -3,28 +3,31 @@
 <head>
     <title>Booklist</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Booklist</h1>
-	<table>
-		<tr>
-			<th>Author</th>
-			<th>Title</th>
-			<th>ISBN</th>
-			<th>YEAR</th>
-			<th>Price</th>
-		</tr>
-		<tr th:each = "book : ${books}">
-			<td th:text = "${book.author}"></td>
-			<td th:text = "${book.title}"></td>
-			<td th:text = "${book.isbn}"></td>
-			<td th:text = "${book.year}"></td>
-			<td th:text = "${book.price} + €"></td>
-			<td><a style="padding-left:10px" th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
-			<td><a style="padding-left:10px" th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
-		</tr>
-	</table>
-	<p></p>
-	<a href="/add">Add book</a>
+	<div class="container">
+		<h1>Booklist</h1>
+		<table class="table table-striped">
+			<tr>
+				<th>Author</th>
+				<th>Title</th>
+				<th>ISBN</th>
+				<th>YEAR</th>
+				<th>Price</th>
+			</tr>
+			<tr th:each = "book : ${books}">
+				<td th:text = "${book.author}"></td>
+				<td th:text = "${book.title}"></td>
+				<td th:text = "${book.isbn}"></td>
+				<td th:text = "${book.year}"></td>
+				<td th:text = "${book.price} + €"></td>
+				<td style="width:90px"><a class="btn btn-danger" th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
+				<td style="width:90px"><a class="btn btn-primary" th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
+			</tr>
+		</table>
+		<p></p>
+		<a class="btn btn-success" href="/add">Add book</a>
+	</div>
 </body>
 </html>
