@@ -3,12 +3,15 @@
 <head>
     <title>Booklist</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Edit book</h1>
-	<div>
-		<form style="display:flex; flex-direction: column; width: 500px" th:object="${book}" th:action="@{/edit}" action='#' method="post">
-			<label for="title">Title</label>
+	<h1 style="display:flex; justify-content:center;">Edit book</h1>
+	<div class="form-group" style="display:flex; justify-content:center;">
+		<form style="display:flex; flex-direction: column; width: 500px" th:object="${book}" th:action="@{/save}" action='#' method="post">
+			<label for="title">Title</label> 
+			<!--piilottaa vanhan kirjan!-->
+			<input type="hidden" th:field="*{id}" /> 
 			<input type="text" th:name="${title}" th:field="*{title}" />
 			<label for="title">Author</label>
 			<input type="text" th:name="${author}" th:field="*{author}" />
