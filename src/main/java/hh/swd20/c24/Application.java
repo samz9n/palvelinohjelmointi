@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 
 import hh.swd20.c24.domain.Book;
 import hh.swd20.c24.domain.BookRepo;
+import hh.swd20.c24.domain.Category;
+import hh.swd20.c24.domain.CategoryRepo;
 
 @SpringBootApplication
 public class Application {
@@ -18,7 +20,7 @@ public class Application {
 	}
 
 	@Bean
-	public CommandLineRunner bookRunner(BookRepo repository) {
+	public CommandLineRunner bookRunner(BookRepo repository, CategoryRepo catRepository) {
 		return (args) -> {
 			log.info("save some books");
 			repository.save(new Book("Demo", "Harry", 1889, "1111222", 12.99));
@@ -27,6 +29,15 @@ public class Application {
 			log.info("Fetch all books");
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
+			}
+
+			log.info("save some categories");
+			catRepository.save(new Category("Scifi"));
+			catRepository.save(new Category("Action"));
+
+			log.info("Fetch all the categories");
+			for (Category cat : catRepository.findAll()) {
+				log.info(cat.toString());
 			}
 		};
 	}
