@@ -23,21 +23,17 @@ public class Application {
 	public CommandLineRunner bookRunner(BookRepo repository, CategoryRepo catRepository) {
 		return (args) -> {
 			log.info("save some books");
-			repository.save(new Book("Demo", "Harry", 1889, "1111222", 12.99));
-			repository.save(new Book("MyBook", "Larry", 1994, "111122233", 13.99));
+			Category cat1 = new Category("Action");
+			catRepository.save(cat1);
+			Category cat2 = new Category("Scifi");
+			catRepository.save(cat2);
+
+			repository.save(new Book("Demo", "Harry", 1889, "1111222", 12.99, cat1));
+			repository.save(new Book("MyBook", "Larry", 1994, "111122233", 13.99, cat2));
 
 			log.info("Fetch all books");
 			for (Book book : repository.findAll()) {
 				log.info(book.toString());
-			}
-
-			log.info("save some categories");
-			catRepository.save(new Category("Scifi"));
-			catRepository.save(new Category("Action"));
-
-			log.info("Fetch all the categories");
-			for (Category cat : catRepository.findAll()) {
-				log.info(cat.toString());
 			}
 		};
 	}
