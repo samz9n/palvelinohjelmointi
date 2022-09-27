@@ -18,6 +18,10 @@
 			<input type="text" id="isbn" th:field="*{isbn}" />
 			<label for="price">Price</label>
 			<input type="text" id="price" th:field="*{price}" />
+			<label for="catlist">Category</label>
+			 <select id="ctglist" th:field="*{category}" class="form-control">
+       			<option th:each="ctgry: ${categories}" th:value="${ctgry.categoryId}" th:text="${ctgry.name}"></option>
+    		</select>
 			<div style="padding-top:20px"></div>
 			<input style="width:80px" type="submit" value="Save" />
 		</form>

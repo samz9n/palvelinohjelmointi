@@ -9,11 +9,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import hh.swd20.c24.domain.Book;
 import hh.swd20.c24.domain.BookRepo;
+import hh.swd20.c24.domain.CategoryRepo;
 
 @Controller
 public class BookController {
 	@Autowired
 	BookRepo repository;
+
+	@Autowired
+	CategoryRepo catRepository;
 
 	@GetMapping(value = "/booklist")
 	public String bookList(Model model) {
@@ -24,6 +28,7 @@ public class BookController {
 	@GetMapping(value = "/add")
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
+		model.addAttribute("categories", catRepository.findAll());
 		return "addbook";
 	}
 

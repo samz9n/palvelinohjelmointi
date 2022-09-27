@@ -38,11 +38,11 @@ public class Category {
 		this.books = books;
 	}
 
-	public Long getId() {
+	public Long getCategoryId() {
 		return categoryId;
 	}
 
-	public void setId(Long categoryId) {
+	public void setCategoryId(Long categoryId) {
 		this.categoryId = categoryId;
 	}
 
