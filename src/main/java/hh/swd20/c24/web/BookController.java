@@ -1,11 +1,15 @@
 package hh.swd20.c24.web;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import hh.swd20.c24.domain.Book;
 import hh.swd20.c24.domain.BookRepo;
@@ -54,4 +58,16 @@ public class BookController {
 	 * @PostMapping(value = "/edit/{id}") public String editBook(Book book) {
 	 * repository.save(book); return "redirect:/booklist"; }
 	 */
+
+	/* RESTful service to get all books */
+	@GetMapping(value = "/books")
+	public @ResponseBody List<Book> bookListRest() {
+		return (List<Book>) repository.findAll();
+	}
+
+	// RESTful service to get book by id
+	@GetMapping(value = "/books/{id}")
+	public @ResponseBody Optional<Book> findBookRest(@PathVariable("id") Long bookId) {
+		return repository.findById(bookId);
+	}
 }

@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 public class Category {
 
@@ -18,6 +20,7 @@ public class Category {
 	private String name;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
+	@JsonIgnoreProperties("category") // one way to avoid infinite loop during JSON serialization/deserialization
 	private List<Book> books;
 
 	public Category(String name) {
