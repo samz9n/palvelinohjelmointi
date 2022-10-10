@@ -7,7 +7,19 @@
 </head>
 <body>
 	<div class="container">
-		<h1>Booklist</h1>
+		<div class="row">
+			<div class="col-md-6"><h1>Booklist</h1></div>
+			<div class="col-md-3" style="padding:20px">
+				<h3 th:inline="text">Signed in as: [[${#httpServletRequest.remoteUser}]]</h3>
+			</div>
+			<div class="col-md-3" style="padding:20px">
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+			</form>
+			</div>
+		</div>
+		
+		
 		<table class="table table-striped">
 			<tr>
 				<th>Author</th>
